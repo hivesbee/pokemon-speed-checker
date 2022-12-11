@@ -44,7 +44,7 @@ const getPokemonStats = (name: string): PokemonStates | null => {
 const ranks = [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6]
 
 // FIXME: 型定義
-export default (props: any) => {
+const PokemonCard = (props: any) => {
   const { type, result, onChange } = props 
 
   const [pokemonName, setPokemonName] = useState<string>('')
@@ -109,7 +109,7 @@ export default (props: any) => {
 
   useEffect(() => {
     onChange(actualValue)
-  }, [actualValue])
+  }, [onChange, actualValue])
 
   return (
     <Card>
@@ -175,7 +175,7 @@ export default (props: any) => {
           value={rank}
           onChange={handleRankChange}
         >
-          { ranks.map(x => (<MenuItem value={x}>{x}</MenuItem>)) }
+          { ranks.map((x, i) => (<MenuItem key={i} value={x}>{x}</MenuItem>)) }
         </Select>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           スピード実数値
@@ -197,3 +197,5 @@ export default (props: any) => {
     </Card>
   )
 }
+
+export default PokemonCard
