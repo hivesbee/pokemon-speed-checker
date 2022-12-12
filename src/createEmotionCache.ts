@@ -1,6 +1,5 @@
 import createCache from '@emotion/cache'
 
-// FIXME : モダンに
-export default function createEmotionCache() {
-  return createCache({ key: 'css', prepend: true })
-}
+const createEmotionCache = () => createCache({ key: 'css', prepend: true })
+
+export default createEmotionCache
