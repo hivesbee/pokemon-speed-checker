@@ -54,13 +54,13 @@ const PokemonCardEffortValue = (props: Props) => {
           />
         </Grid>
         <Grid item>
-          <ButtonGroup variant="outlined" color="primary" aria-label="outlined secondary button group">
+          <ButtonGroup variant="outlined" color="inherit" aria-label="outlined secondary button group">
             <Button onClick={(e) => handleCountButtonClick(-4)}>-</Button>
             <Button onClick={(e) => handleCountButtonClick(4)}>+</Button>
           </ButtonGroup>
         </Grid>
         <Grid item>
-          <ButtonGroup variant="outlined" color="primary" aria-label="outlined secondary button group">
+          <ButtonGroup variant="outlined" color="inherit" aria-label="outlined secondary button group">
             <Button onClick={(e) => handleSetButtonClick(0)}>0</Button>
             <Button onClick={(e) => handleSetButtonClick(252)}>252</Button>
           </ButtonGroup>
