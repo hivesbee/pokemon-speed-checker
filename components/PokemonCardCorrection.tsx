@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 
 import Typography from '@mui/material/Typography'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
@@ -46,7 +46,7 @@ const PokemonCardCorrection = (props: Props) => {
         onChange={handleChange}
         aria-label="correction"
       >
-        {correctionsComponents}
+        { correctionsComponents }
       </ToggleButtonGroup>
     </>
   )

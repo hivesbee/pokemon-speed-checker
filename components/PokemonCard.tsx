@@ -13,6 +13,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import ToggleButton from '@mui/material/ToggleButton'
 
 import pokemons from '../data/pokemons'
+import PokemonCardEffortValue from './PokemonCardEffortValue'
 import PokemonCardCorrection from './PokemonCardCorrection'
 
 type PokemonStates = {
@@ -52,7 +53,7 @@ const PokemonCard = (props: any) => {
 
   const pokeStats = useMemo(() => {
     const stats = getPokemonStats(pokemonName)
-    return stats ? `${stats.h} - ${stats.a} - ${stats.b} - ${stats.c} - ${stats.d} - ${stats.s}` : '0 - 0 - 0 - 0 - 0 - 0'
+    return stats ? `種族値 : ${stats.h} - ${stats.a} - ${stats.b} - ${stats.c} - ${stats.d} - ${stats.s}` : '対応するポケモンがみつかりません'
   }, [pokemonName])
 
   const handleChange = (value: string | null) => {
@@ -60,32 +61,12 @@ const PokemonCard = (props: any) => {
   }
 
   const [effortValue, setEffortValue] = useState<string>('252')
-  const handleEffortValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEffortValue(event.target.value)
-  }
-
-  const handleButtonClick = (value: number) => {
-    const ev = parseInt(effortValue) + value
-
-    if (0 > ev) {
-      setEffortValue('0')
-      return
-    }
-
-    if (252 < ev) {
-      setEffortValue('252')
-      return
-    }
-
-    setEffortValue(`${ev}`)
+  const handleEffortValueChange = (value: string) => {
+    setEffortValue(value)
   }
 
   const [correction, setCorrection] = useState<number>(1.0)
-  const handleCorrectionChange = (event: React.MouseEvent<HTMLElement>, newValue: string | null) => {
-    setCorrection(parseFloat(newValue ?? '1.0'))
-  }
-
-  const handleCorrectionChange2 = (value: string) => {
+  const handleCorrectionChange = (value: string) => {
     setCorrection(parseFloat(value))
   }
 
@@ -127,34 +108,13 @@ const PokemonCard = (props: any) => {
           id="combo-box-demo"
           options={pokemonNames}
           sx={{ width: 300 }}
-          renderInput={(params) => <TextField label="Pokemon" {...params} />}
+          renderInput={(params) => <TextField label="Pokemon" {...params} helperText={pokeStats} />}
           value={pokemonName}
           onChange={(event: any, newValue: string | null) => { handleChange(newValue) }}
         />
         <br />
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          種族値
-        </Typography>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          { pokeStats }
-        </Typography>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          努力値
-        </Typography>
-        <TextField type="number" 
-          InputLabelProps={{
-            shrink: true,
-          }}
-          label="努力値"
-          variant="outlined"
-          value={effortValue}
-          onChange={handleEffortValueChange}
-        />
-        <ButtonGroup variant="outlined" color="primary" aria-label="outlined secondary button group">
-          <Button onClick={(e) => handleButtonClick(-4)}>-</Button>
-          <Button onClick={(e) => handleButtonClick(4)}>+</Button>
-        </ButtonGroup>
-        <PokemonCardCorrection onChange={handleCorrectionChange2}/>
+        <PokemonCardEffortValue onChange={handleEffortValueChange} />
+        <PokemonCardCorrection onChange={handleCorrectionChange}/>
         
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           ランク補正
