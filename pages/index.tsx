@@ -13,6 +13,7 @@ import TextField from '@mui/material/TextField'
 
 import { useState, useMemo } from 'react'
 
+import Header from '../components/Header'
 import PokemonCard from '../components/PokemonCard'
 
 import pokemons from '../data/pokemons'
@@ -43,9 +44,10 @@ export default function Home() {
 
   return (
     <div>
+      <Header />
       <main>
         <Container fixed>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} style={{padding: '1rem'}}>
             <Grid item>
               <PokemonCard type="origin" result="" onChange={handleOriginChange} />
             </Grid>

@@ -13,6 +13,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import ToggleButton from '@mui/material/ToggleButton'
 
 import pokemons from '../data/pokemons'
+import PokemonCardCorrection from './PokemonCardCorrection'
 
 type PokemonStates = {
   h: number
@@ -84,6 +85,10 @@ const PokemonCard = (props: any) => {
     setCorrection(parseFloat(newValue ?? '1.0'))
   }
 
+  const handleCorrectionChange2 = (value: string) => {
+    setCorrection(parseFloat(value))
+  }
+
   const [rank, setRank] = useState<string>('0')
   const handleRankChange = (event: SelectChangeEvent) => {
     setRank(event.target.value)
@@ -149,25 +154,8 @@ const PokemonCard = (props: any) => {
           <Button onClick={(e) => handleButtonClick(-4)}>-</Button>
           <Button onClick={(e) => handleButtonClick(4)}>+</Button>
         </ButtonGroup>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          性格補正
-        </Typography>
-        <ToggleButtonGroup
-          value={correction}
-          exclusive
-          onChange={handleCorrectionChange}
-          aria-label="correction"
-        >
-          <ToggleButton value={0.9} aria-label="correction x0.9">
-            x0.9
-          </ToggleButton>
-          <ToggleButton value={1.0} aria-label="correction x1.0">
-            x1.0
-          </ToggleButton>
-          <ToggleButton value={1.1} aria-label="correction x1.1">
-            x1.1
-          </ToggleButton>
-        </ToggleButtonGroup>
+        <PokemonCardCorrection onChange={handleCorrectionChange2}/>
+        
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           ランク補正
         </Typography>
