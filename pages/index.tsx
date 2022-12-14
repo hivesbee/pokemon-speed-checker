@@ -52,7 +52,7 @@ export default function Home() {
               <PokemonCard type="origin" result="" onChange={handleOriginChange} />
             </Grid>
             <Grid item>
-              <PokemonCard type="target" result={result} onChange={handleTargetChange} />
+              <PokemonCard type="target" result={result} originSpeed={originStatus} onChange={handleTargetChange} />
             </Grid>
           </Grid>
         </Container>

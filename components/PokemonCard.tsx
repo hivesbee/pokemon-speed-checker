@@ -1,20 +1,23 @@
 import { useEffect, useMemo, useState } from 'react'
 
 import Autocomplete from '@mui/material/Autocomplete'
+import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import MenuItem from '@mui/material/MenuItem'
+import LinearProgress from '@mui/material/LinearProgress'
 import Select, { SelectChangeEvent } from '@mui/material/Select'
-import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import ToggleButton from '@mui/material/ToggleButton'
 
 import pokemons from '../data/pokemons'
 import PokemonCardEffortValue from './PokemonCardEffortValue'
 import PokemonCardCorrection from './PokemonCardCorrection'
+import PokemonCardResult from './PokemonCardResult'
 
 type PokemonStates = {
   h: number
@@ -47,7 +50,7 @@ const ranks = [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6]
 
 // FIXME: 型定義
 const PokemonCard = (props: any) => {
-  const { type, result, onChange } = props 
+  const { type, result, originSpeed, onChange } = props 
 
   const [pokemonName, setPokemonName] = useState<string>('')
 
@@ -97,6 +100,28 @@ const PokemonCard = (props: any) => {
     onChange(actualValue)
   }, [onChange, actualValue])
 
+  const min = 0
+  const max = 2
+  const normalise = (value: number) => ((value - min) * 100) / (max - min)
+
+  const speedRatio = useMemo(() => {
+    const ratio = originSpeed / actualValue
+    console.log(normalise(max < ratio ? max : ratio))
+    return normalise(max < ratio ? max : ratio)
+  }, [originSpeed, actualValue])
+
+  const progressColor = useMemo(() => {
+    // return speedRatio < 50 ? '#F44336' :
+    //   50 < speedRatio ? '#3F51B5' : '#FFEF62'
+    return speedRatio < 50 ? 'error' :
+      50 < speedRatio ? 'primary' : 'warning'
+  }, [speedRatio])
+
+  const progressLabel = useMemo(() => {
+    return originSpeed < actualValue ? '遅い' :
+      actualValue < originSpeed ? '早い' : '同速'
+  }, [speedRatio, actualValue])
+
   return (
     <Card>
       <CardContent>
@@ -132,14 +157,7 @@ const PokemonCard = (props: any) => {
           {actualValue}
         </Typography>
         {type !== 'origin' &&
-          <>
-            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-              つまり
-            </Typography>
-            <Typography sx={{ fontSize: 18 }} color="text.primary" gutterBottom>
-              { result === 'fast' ? '早い' : '遅い'}
-            </Typography>
-          </>
+          <PokemonCardResult originSpeed={originSpeed} actualSpeed={actualValue} />
         }
       </CardContent>
     </Card>
