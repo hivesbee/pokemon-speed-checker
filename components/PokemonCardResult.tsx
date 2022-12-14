@@ -31,7 +31,7 @@ const PokemonCardResult = (props: Props) => {
 
   return (
     <>
-      <hr />
+      
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <Box sx={{ flexGrow: 1, mr: 1 }}>
           <LinearProgress

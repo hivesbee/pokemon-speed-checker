@@ -46,8 +46,8 @@ export default function Home() {
     <div>
       <Header />
       <main>
-        <Container fixed>
-          <Grid container spacing={2} style={{padding: '1rem'}}>
+        <Container>
+          <Grid container spacing={2} style={{padding: '1rem 0'}}>
             <Grid item>
               <PokemonCard type="origin" result="" onChange={handleOriginChange} />
             </Grid>

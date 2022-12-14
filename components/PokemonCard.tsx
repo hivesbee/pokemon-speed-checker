@@ -17,6 +17,8 @@ import ToggleButton from '@mui/material/ToggleButton'
 import pokemons from '../data/pokemons'
 import PokemonCardEffortValue from './PokemonCardEffortValue'
 import PokemonCardCorrection from './PokemonCardCorrection'
+import PokemonCardRank from './PokemonCardRank'
+import PokemonCardActualSpeed from './PokemonCardActualSpeed'
 import PokemonCardResult from './PokemonCardResult'
 
 type PokemonStates = {
@@ -74,8 +76,9 @@ const PokemonCard = (props: any) => {
   }
 
   const [rank, setRank] = useState<string>('0')
-  const handleRankChange = (event: SelectChangeEvent) => {
-    setRank(event.target.value)
+
+  const handleRankChange = (value: number) => {
+    setRank(`${value}`)
   }
 
   
@@ -100,28 +103,6 @@ const PokemonCard = (props: any) => {
     onChange(actualValue)
   }, [onChange, actualValue])
 
-  const min = 0
-  const max = 2
-  const normalise = (value: number) => ((value - min) * 100) / (max - min)
-
-  const speedRatio = useMemo(() => {
-    const ratio = originSpeed / actualValue
-    console.log(normalise(max < ratio ? max : ratio))
-    return normalise(max < ratio ? max : ratio)
-  }, [originSpeed, actualValue])
-
-  const progressColor = useMemo(() => {
-    // return speedRatio < 50 ? '#F44336' :
-    //   50 < speedRatio ? '#3F51B5' : '#FFEF62'
-    return speedRatio < 50 ? 'error' :
-      50 < speedRatio ? 'primary' : 'warning'
-  }, [speedRatio])
-
-  const progressLabel = useMemo(() => {
-    return originSpeed < actualValue ? '遅い' :
-      actualValue < originSpeed ? '早い' : '同速'
-  }, [speedRatio, actualValue])
-
   return (
     <Card>
       <CardContent>
@@ -138,26 +119,18 @@ const PokemonCard = (props: any) => {
           onChange={(event: any, newValue: string | null) => { handleChange(newValue) }}
         />
         <br />
-        <PokemonCardEffortValue onChange={handleEffortValueChange} />
-        <PokemonCardCorrection onChange={handleCorrectionChange}/>
-        
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          ランク補正
-        </Typography>
-        <Select
-          value={rank}
-          onChange={handleRankChange}
-        >
-          { ranks.map((x, i) => (<MenuItem key={i} value={x}>{x}</MenuItem>)) }
-        </Select>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          スピード実数値
-        </Typography>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {actualValue}
-        </Typography>
-        {type !== 'origin' &&
-          <PokemonCardResult originSpeed={originSpeed} actualSpeed={actualValue} />
+        <Box sx={{ mb: 1 }}>
+          <PokemonCardEffortValue onChange={handleEffortValueChange} />
+        </Box>
+        <Box sx={{ mb: 1 }}>
+          <PokemonCardCorrection onChange={handleCorrectionChange} />
+        </Box>
+        <PokemonCardRank onChange={handleRankChange} />
+        <hr />
+        <PokemonCardActualSpeed actualSpeed={actualValue} />
+        {
+          type !== 'origin' &&
+            <PokemonCardResult originSpeed={originSpeed} actualSpeed={actualValue} />
         }
       </CardContent>
     </Card>

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import ToggleButton from '@mui/material/ToggleButton'
@@ -10,6 +11,7 @@ const correctionsComponents = corrections.map((x, i) => (
     key={i}
     value={x}
     aria-label={`correction x${x}`}
+    sx={{ fontSize: '14', padding: '0.5rem' }}
   >
     {`x${x}`}
   </ToggleButton>
@@ -32,23 +34,27 @@ const PokemonCardCorrection = (props: Props) => {
     onChange(value)
   }
   return (
-    <>
-      <Typography
-        sx={{ fontSize: 14 }}
-        color="text.secondary"
-        gutterBottom
-      >
-        性格補正
-      </Typography>
-      <ToggleButtonGroup
-        value={correction}
-        exclusive
-        onChange={handleChange}
-        aria-label="correction"
-      >
-        { correctionsComponents }
-      </ToggleButtonGroup>
-    </>
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      <Box sx={{ flexGrow: 1, width: '7rem', mr: 1 }}>
+        <Typography
+          sx={{ fontSize: 14 }}
+          color="text.secondary"
+          gutterBottom
+        >
+          性格補正
+        </Typography>
+      </Box>
+      <Box sx={{ flexShrink: 1 }}>
+        <ToggleButtonGroup
+          value={correction}
+          exclusive
+          onChange={handleChange}
+          aria-label="correction"
+        >
+          { correctionsComponents }
+        </ToggleButtonGroup>
+      </Box>
+    </Box>
   )
 }
 
