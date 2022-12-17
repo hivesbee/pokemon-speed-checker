@@ -1,6 +1,22 @@
 // NOTE: こちらでフォーマット https://jsonformatter.curiousconcept.com
-// FIXME: 型定義
-const pokemons: any = {
+export type Pokemon = {
+  id: string
+  no: string
+  name: string
+  type: string
+  h: string
+  a: string
+  b: string
+  c: string
+  d: string
+  s: string
+}
+
+type Pokemons = {
+  [k: string]: Pokemon
+}
+
+const pokemons: Pokemons = {
   "ニャオハ":{
     "id":"0",
     "no":"001",
@@ -5271,4 +5287,12 @@ const pokemons: any = {
   }
 }
 
-export default pokemons
+const pokemonNames = Object.entries(pokemons).map(([k, _]) => k)
+
+const getPokemonBaseStats = (name: string): Pokemon | null => pokemons[name] ?? null
+
+export {
+  pokemons,
+  pokemonNames,
+  getPokemonBaseStats
+}

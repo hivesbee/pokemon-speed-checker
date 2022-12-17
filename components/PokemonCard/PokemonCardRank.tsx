@@ -1,28 +1,34 @@
 import { useState } from 'react'
 
+import { SxProps } from '@mui/system'
+import { Theme } from '@mui/material/styles'
+
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 import Typography from '@mui/material/Typography'
 
+import { usePokemonCard } from './usePokemonCard'
+
 type Props = {
-  onChange: (value: number) => void
+  sx?: SxProps<Theme>
 }
 
 const PokemonCardRank = (props: Props) => {
-  const { onChange } = props
+  const { sx } = props
 
-  const [rank, setRank] = useState<number>(0)
+  const { setRank } = usePokemonCard()
+
+  // const [rank, setRank] = useState<number>(0)
   const handleChange = (event: Event, value: number | number[]) => {
     if (Array.isArray(value)) {
       return
     }
 
     setRank(value)
-    onChange(value)
   }
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', ...sx }}>
       <Box sx={{ width: '7rem', mr: 1 }}>
         <Typography
           sx={{ fontSize: 14 }}

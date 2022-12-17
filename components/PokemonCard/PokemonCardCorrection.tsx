@@ -1,9 +1,14 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+
+import { SxProps } from '@mui/system'
+import { Theme } from '@mui/material/styles'
 
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import ToggleButton from '@mui/material/ToggleButton'
+
+import { usePokemonCard } from './usePokemonCard'
 
 const corrections = ['0.9', '1.0', '1.1']
 const correctionsComponents = corrections.map((x, i) => (
@@ -18,23 +23,25 @@ const correctionsComponents = corrections.map((x, i) => (
 ))
 
 type Props = {
-  onChange: (value: string) => void
+  sx?: SxProps<Theme>
 }
 
 const PokemonCardCorrection = (props: Props) => {
-  const { onChange } = props
+  const { sx } = props
 
-  const [correction, setCorrection] = useState<string>(corrections[1])
-  const handleChange = (event: React.MouseEvent<HTMLElement>, value: string | null) => {
+  const { setCorrection } = usePokemonCard()
+
+  const [correctionLabel, setCorrectionLabel] = useState<string>(corrections[1])
+  const handleChange = (_: React.MouseEvent<HTMLElement>, value: string | null) => {
     if (!value) {
       return
     }
 
-    setCorrection(value)
-    onChange(value)
+    setCorrectionLabel(value)
+    setCorrection(parseFloat(value))
   }
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', ...sx }}>
       <Box sx={{ flexGrow: 1, width: '7rem', mr: 1 }}>
         <Typography
           sx={{ fontSize: 14 }}
@@ -46,7 +53,7 @@ const PokemonCardCorrection = (props: Props) => {
       </Box>
       <Box sx={{ flexShrink: 1 }}>
         <ToggleButtonGroup
-          value={correction}
+          value={correctionLabel}
           exclusive
           onChange={handleChange}
           aria-label="correction"

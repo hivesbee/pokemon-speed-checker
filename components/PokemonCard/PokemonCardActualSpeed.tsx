@@ -1,15 +1,21 @@
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
+import { SxProps } from '@mui/system'
+import { Theme } from '@mui/material/styles'
+
+import { usePokemonCard } from './usePokemonCard'
+
 type Props = {
-  actualSpeed: number
+  sx?: SxProps<Theme>
 }
 
 const PokemonCardActualSpeed = (props: Props) => {
-  const { actualSpeed } = props
+  const { sx } = props
+  const { actualSpeed } = usePokemonCard()
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', ...sx }}>
       <Box sx={{ width: '7rem', mr: 1 }}>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           すばやさ実数値
