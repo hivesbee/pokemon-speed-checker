@@ -4,9 +4,10 @@ import { SxProps } from '@mui/system'
 import { Theme } from '@mui/material/styles'
 
 import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import ToggleButton from '@mui/material/ToggleButton'
+
+import Title from './layout/Title'
 
 import { usePokemonCard } from './usePokemonCard'
 
@@ -42,15 +43,9 @@ const PokemonCardCorrection = (props: Props) => {
   }
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', ...sx }}>
-      <Box sx={{ flexGrow: 1, width: '7rem', mr: 1 }}>
-        <Typography
-          sx={{ fontSize: 14 }}
-          color="text.secondary"
-          gutterBottom
-        >
-          性格補正
-        </Typography>
-      </Box>
+      <Title>
+        性格補正
+      </Title>
       <Box sx={{ flexShrink: 1 }}>
         <ToggleButtonGroup
           value={correctionLabel}

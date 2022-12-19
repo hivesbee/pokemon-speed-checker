@@ -1,11 +1,11 @@
-import Autocomplete from '@mui/material/Autocomplete'
-
 import { SxProps } from '@mui/system'
 import { Theme } from '@mui/material/styles'
 
+import Autocomplete from '@mui/material/Autocomplete'
 import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
 import TextField from '@mui/material/TextField'
+
+import Title from './layout/Title'
 
 import { items, Items } from '../../data/items'
 
@@ -26,21 +26,15 @@ const PokemonCardItem = (props: Props) => {
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', ...sx }}>
-      <Box sx={{ flexGrow: 1, width: '7rem', mr: 1 }}>
-        <Typography
-          sx={{ fontSize: 14 }}
-          color="text.secondary"
-          gutterBottom
-        >
-          もちもの
-        </Typography>
-      </Box>
+      <Title>
+        もちもの
+      </Title>
       <Box sx={{ flexShrink: 1 }}>
         <Autocomplete
           disablePortal
           options={items}
           size="small"
-          sx={{ width: '16rem' }}
+          sx={{ width: '14rem' }}
           renderInput={(params) => <TextField label="" {...params} helperText="" />}
           value={item}
           onChange={(event: any, newValue: string | null) => { handleChange(newValue) }}

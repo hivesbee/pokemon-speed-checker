@@ -1,6 +1,6 @@
 import { RecoilRoot } from 'recoil'
 
-import PokemonCardContainer from './PokemonCardContainer'
+import PokemonCardContainer from './Container'
 
 // FIXME: 型定義
 const PokemonCard = (props: any) => {

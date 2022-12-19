@@ -7,6 +7,8 @@ import ButtonGroup from '@mui/material/ButtonGroup'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
+import Title from './layout/Title'
+
 import { usePokemonCard } from './usePokemonCard'
 
 type Props = {
@@ -28,12 +30,10 @@ const PokemonCardEffortValue = (props: Props) => {
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', ...sx }}>
-      <Box sx={{ width: '7rem', mr: 1 }}>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          努力値
-        </Typography>
-      </Box>
-      <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'end'}}>
+      <Title>
+        努力値
+      </Title>
+      <Box sx={{ flexGrow: 1, display: 'flex' }}>
         <Box sx={{ mr: 1 }}>
           <TextField
             type="number" 

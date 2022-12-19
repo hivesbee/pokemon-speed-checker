@@ -1,11 +1,10 @@
-import { useState } from 'react'
-
 import { SxProps } from '@mui/system'
 import { Theme } from '@mui/material/styles'
 
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
-import Typography from '@mui/material/Typography'
+
+import Title from './layout/Title'
 
 import { usePokemonCard } from './usePokemonCard'
 
@@ -28,15 +27,9 @@ const PokemonCardRank = (props: Props) => {
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', ...sx }}>
-      <Box sx={{ width: '7rem', mr: 1 }}>
-        <Typography
-          sx={{ fontSize: 14 }}
-          color="text.secondary"
-          gutterBottom
-        >
-          ランク補正
-        </Typography>
-      </Box>
+      <Title>
+        ランク補正
+      </Title>
       <Box sx={{ flexGrow: 1 }}>
         <Slider
           marks

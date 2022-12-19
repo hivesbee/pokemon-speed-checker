@@ -4,7 +4,8 @@ import { Theme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
-import Typography from '@mui/material/Typography'
+
+import Title from './layout/Title'
 
 import { usePokemonCard } from './usePokemonCard'
 
@@ -12,31 +13,25 @@ type Props = {
   sx?: SxProps<Theme>
 }
 
-const PokemonCardField = (props: Props) => {
+const PokemonCardStatusAliment = (props: Props) => {
   const { sx } = props
 
-  const { setField } = usePokemonCard()
+  const { setStatusAliment } = usePokemonCard()
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setField(event.target.checked)
+    setStatusAliment(event.target.checked)
   }
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', ...sx }}>
-      <Box sx={{ flexGrow: 1, width: '7rem', mr: 1 }}>
-        <Typography
-          sx={{ fontSize: 14 }}
-          color="text.secondary"
-          gutterBottom
-        >
-          フィールド
-        </Typography>
-      </Box>
+      <Title>
+        状態異常
+      </Title>
       <Box sx={{ flexShrink: 1 }}>
-        <FormControlLabel control={<Checkbox onChange={handleChange} />} label="おいかぜ" />
+        <FormControlLabel control={<Checkbox onChange={handleChange} />} label="まひ" />
       </Box>
     </Box>
   )
 }
 
-export default PokemonCardField
+export default PokemonCardStatusAliment

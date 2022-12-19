@@ -4,6 +4,8 @@ import Typography from '@mui/material/Typography'
 import { SxProps } from '@mui/system'
 import { Theme } from '@mui/material/styles'
 
+import Title from './layout/Title'
+
 import { usePokemonCard } from './usePokemonCard'
 
 type Props = {
@@ -16,11 +18,9 @@ const PokemonCardActualSpeed = (props: Props) => {
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', ...sx }}>
-      <Box sx={{ width: '7rem', mr: 1 }}>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          すばやさ実数値
-        </Typography>
-      </Box>
+      <Title>
+        すばやさ実数値
+      </Title>
       <Box>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           { actualSpeed }
