@@ -18,7 +18,6 @@ const PokemonCardRank = (props: Props) => {
 
   const { setRank } = usePokemonCard()
 
-  // const [rank, setRank] = useState<number>(0)
   const handleChange = (event: Event, value: number | number[]) => {
     if (Array.isArray(value)) {
       return

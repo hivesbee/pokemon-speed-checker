@@ -7,7 +7,10 @@ import PokemonCardName from './PokemonCardName'
 import PokemonCardEffortValue from './PokemonCardEffortValue'
 import PokemonCardCorrection from './PokemonCardCorrection'
 import PokemonCardRank from './PokemonCardRank'
+import PokemonCardItem from './PokemonCardItem'
+import PokemonCardStatusAliment from './PokemonCardStatusAilment'
 import PokemonCardActualSpeed from './PokemonCardActualSpeed'
+import PokemonCardField from './PokemonCardField'
 import PokemonCardResult from './PokemonCardResult'
 
 import { usePokemonCard } from './usePokemonCard'
@@ -34,7 +37,10 @@ const PokemonCardContainer = (props: Props) => {
         <PokemonCardName sx={{ mb: 1 }} />
         <PokemonCardEffortValue sx={{ mb: 1 }} />
         <PokemonCardCorrection sx={{ mb: 1 }} />
-        <PokemonCardRank />
+        <PokemonCardRank sx={{ mb: 1 }} />
+        <PokemonCardItem sx={{ mb: 1 }} />
+        <PokemonCardStatusAliment sx={{ mb: 1 }} />
+        <PokemonCardField />
         <hr />
         <PokemonCardActualSpeed />
         {

@@ -32,7 +32,7 @@ const PokemonCardName = (props: Props) => {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', ...sx }}>
       <Box sx={{ flexGrow: 1, width: '7rem', mr: 1 }}>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        <Typography sx={{ fontSize: 14, mb: '22px' }} color="text.secondary" gutterBottom>
           調整ポケモン
         </Typography>
       </Box>
@@ -40,6 +40,7 @@ const PokemonCardName = (props: Props) => {
         <Autocomplete
           disablePortal
           options={pokemonNames}
+          size="small"
           sx={{ width: '16rem' }}
           renderInput={(params) => <TextField label="" {...params} helperText={baseStatsLabel} />}
           value={name}

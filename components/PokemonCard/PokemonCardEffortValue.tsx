@@ -22,12 +22,6 @@ const PokemonCardEffortValue = (props: Props) => {
     setEffortValue(parseInt(event.target.value))
   }
 
-  const handleCountButtonClick = (value: number) => {
-    const v = effortValue + value
-
-    setEffortValue(v < 0 ? 0 : (252 < v ? 252 : v))
-  }
-
   const handleSetButtonClick = (value: number) => {
     setEffortValue(value)
   }
@@ -45,22 +39,23 @@ const PokemonCardEffortValue = (props: Props) => {
             type="number" 
             InputLabelProps={{ shrink: true }}
             variant="standard"
-            inputProps={{ min: '0', max: '252' }}
+            inputProps={{
+              min: '0',
+              max: '252',
+              step: 4,
+              style: {
+                textAlign: 'center'
+             }
+            }}
             value={effortValue}
             onChange={handleEffortValueChange}
-            style={{ width: '3rem' }}
+            sx={{ width: '4rem' }}
           />
-        </Box>
-        <Box sx={{ mr: 1 }}>
-          <ButtonGroup variant="outlined" color="inherit" aria-label="outlined secondary button group">
-            <Button onClick={(e) => handleCountButtonClick(-4)}>-</Button>
-            <Button onClick={(e) => handleCountButtonClick(4)}>+</Button>
-          </ButtonGroup>
         </Box>
         <Box>
           <ButtonGroup variant="outlined" color="inherit" aria-label="outlined secondary button group">
-            <Button onClick={(e) => handleSetButtonClick(0)}>0</Button>
-            <Button onClick={(e) => handleSetButtonClick(252)}>252</Button>
+            <Button onClick={(e) => handleSetButtonClick(0)} sx={{ width: '3rem' }}>0</Button>
+            <Button onClick={(e) => handleSetButtonClick(252)} sx={{ width: '3rem' }}>252</Button>
           </ButtonGroup>
         </Box>
       </Box>
