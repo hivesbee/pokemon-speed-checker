@@ -26,7 +26,7 @@ const PokemonCardRank = (props: Props) => {
   }
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', ...sx }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', ...sx }}>
       <Title>
         ランク補正
       </Title>

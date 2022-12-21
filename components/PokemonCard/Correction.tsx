@@ -42,7 +42,7 @@ const PokemonCardCorrection = (props: Props) => {
     setCorrection(parseFloat(value))
   }
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', ...sx }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', width: '100%', ...sx }}>
       <Title>
         性格補正
       </Title>
