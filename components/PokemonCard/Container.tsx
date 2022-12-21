@@ -12,6 +12,9 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import FormControl from '@mui/material/FormControl'
 import FormLabel from '@mui/material/FormLabel'
 
+import ModeContainer from './layout/ModeContainer'
+import ModeContainerBlind from './layout/ModeContainerBlind'
+
 import Name from './Name'
 import Quick from './Quick'
 import EffortValue from './EffortValue'
@@ -63,30 +66,23 @@ const PokemonCardContainer = (props: Props) => {
               value="quick"
               name="quick mode"
               inputProps={{ 'aria-label': 'quick mode' }}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: '1rem',
+                },
+              }}
             />
           }
-          // sx={{ fontSize: '0.75rem' }}
+          sx={{
+            '& .MuiTypography-root': {
+              fontSize: '0.75rem'
+            }
+          }}
         />
-        <Box sx={{
-          position: 'relative',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          mb: 1,
-          p: 1,
-          border: `1px solid ${grey[300]}`
-        }}>
+        <ModeContainer>
           <Quick />
-          {isDetailMode && <Box
-            sx={{
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              backgroundColor: 'rgba(158, 158, 158, 0.3)', // grey[500]
-              zIndex: 1
-            }}
-          />}
-        </Box>
+          {!isQuickMode && <ModeContainerBlind />}
+        </ModeContainer>
         <FormControlLabel
           label="詳細モード"
           control={
@@ -97,36 +93,28 @@ const PokemonCardContainer = (props: Props) => {
               value="detail"
               name="detail mode"
               inputProps={{ 'aria-label': 'detail mode' }}
+              sx={{
+                '& .MuiSvgIcon-root': {
+                  fontSize: '1rem',
+                },
+              }}
             />
           }
-          // sx={{ fontSize: '0.75rem' }}
+          sx={{
+            '& .MuiTypography-root': {
+              fontSize: '0.75rem'
+            }
+          }}
         />
-        <Box sx={{
-          position: 'relative',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          mb: 1,
-          p: 1,
-          border: `1px solid ${grey[300]}`
-        }}>
+        <ModeContainer>
           <EffortValue sx={{ mb: 1 }} />
           <Correction sx={{ mb: 1 }} />
           <Rank sx={{ mb: 1 }} />
           <Item sx={{ mb: 1 }} />
           <StatusAilment sx={{ mb: 1 }} />
           <Field />
-          {isQuickMode && <Box
-            sx={{
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              backgroundColor: 'rgba(158, 158, 158, 0.3)', // grey[500]
-              zIndex: 1
-            }}
-          />}
-        </Box>
+          {!isDetailMode && <ModeContainerBlind />}
+        </ModeContainer>
         <hr />
         <ActualSpeed />
         {
